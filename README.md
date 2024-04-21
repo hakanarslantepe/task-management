@@ -9,6 +9,7 @@ To run the project on your local machine, follow these steps:
 
 1-Clone the repository:
 git clone https://github.com/hakanarslantepe/task-management
+
 2-Navigate to the project directory:
 cd task-management
 
