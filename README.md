@@ -1,7 +1,7 @@
 # Task Management Application
 This project contains a task management application developed using Next.js. This application allows users to create, edit, delete, and track their tasks using drag and drop functionality.
 
-#Live Demo
+# Live Demo
 You can view the live demo of the project [here](https://task-management-weld-seven.vercel.app/)
 
 # Getting Started
