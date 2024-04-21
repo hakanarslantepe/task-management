@@ -17,99 +17,14 @@ import {
 import { SortableContext, arrayMove } from "@dnd-kit/sortable";
 import { createPortal } from "react-dom";
 import TaskCard from "./TaskCard";
-
-const defaultCols: Column[] = [
-  {
-    id: "todo",
-    title: "Todo",
-  },
-  {
-    id: "doing",
-    title: "In Progress",
-  },
-  {
-    id: "done",
-    title: "Done",
-  },
-];
-
-const defaultTasks: Task[] = [
-  {
-    id: "1",
-    columnId: "todo",
-    content: "List admin APIs for dashboard",
-  },
-  {
-    id: "2",
-    columnId: "todo",
-    content:
-      "Develop user registration functionality with OTP delivered on SMS after email confirmation and phone number confirmation",
-  },
-  {
-    id: "3",
-    columnId: "doing",
-    content: "Conduct security testing",
-  },
-  {
-    id: "4",
-    columnId: "doing",
-    content: "Analyze competitors",
-  },
-  {
-    id: "5",
-    columnId: "done",
-    content: "Create UI kit documentation",
-  },
-  {
-    id: "6",
-    columnId: "done",
-    content: "Dev meeting",
-  },
-  {
-    id: "7",
-    columnId: "done",
-    content: "Deliver dashboard prototype",
-  },
-  {
-    id: "8",
-    columnId: "todo",
-    content: "Optimize application performance",
-  },
-  {
-    id: "9",
-    columnId: "todo",
-    content: "Implement data validation",
-  },
-  {
-    id: "10",
-    columnId: "todo",
-    content: "Design database schema",
-  },
-  {
-    id: "11",
-    columnId: "todo",
-    content: "Integrate SSL web certificates into workflow",
-  },
-  {
-    id: "12",
-    columnId: "doing",
-    content: "Implement error logging and monitoring",
-  },
-  {
-    id: "13",
-    columnId: "doing",
-    content: "Design and implement responsive UI",
-  },
-];
+import { child, get, ref } from "firebase/database";
+import { db } from "../../firebase";
 
 const Boards = () => {
-  const [columns, setColumns] = useState<Column[]>(defaultCols);
+  const [columns, setColumns] = useState<Column[]>([]);
   const columnsId = useMemo(() => columns.map((col) => col.id), [columns]);
-
-  const [tasks, setTasks] = useState<Task[]>(defaultTasks);
-
+  const [tasks, setTasks] = useState<Task[]>([]);
   const [activeColumn, setActiveColumn] = useState<Column | null>(null);
-
   const [activeTask, setActiveTask] = useState<Task | null>(null);
 
   const sensors = useSensors(
@@ -119,6 +34,39 @@ const Boards = () => {
       },
     })
   );
+  const getTasks = () => {
+    get(child(ref(db), "tasks"))
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          const data = snapshot.val();
+          setTasks(Object.values(data));
+        } else {
+          console.log("no data available");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  const getColumns = () => {
+    get(child(ref(db), "boards"))
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          const data = snapshot.val();
+          setColumns(Object.values(data));
+        } else {
+          console.log("no data available");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    getTasks();
+    getColumns();
+  }, []);
 
   return (
     <div
@@ -347,7 +295,7 @@ const Boards = () => {
   }
 };
 
-function generateId() {
+export function generateId() {
   return Math.floor(Math.random() * 10001);
 }
 

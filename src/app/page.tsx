@@ -1,3 +1,4 @@
+"use client";
 import Sidebar from "@/components/Sidebar";
 import dynamic from "next/dynamic";
 
@@ -12,7 +13,7 @@ export default function Home() {
   return (
     <div className="flex flex-row">
       <Sidebar />
-      <Boards />
+      <Boards  />
     </div>
   );
 }

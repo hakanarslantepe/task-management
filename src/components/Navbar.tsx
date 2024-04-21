@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const Navbar = () => {
   return (
-    <div className="h-[72px] flex items-center justify-between px-8 border-b shadow-sm">
+    <div className="h-[72px] flex items-center justify-between px-[60px] border-b shadow-sm">
       <Link href="/">
         <p className="text-blue-500 font-bold text-2xl">Task Management</p>
       </Link>

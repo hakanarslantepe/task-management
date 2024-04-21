@@ -8,10 +8,10 @@ import chart from "@/assets/chart.png";
 import { useState } from "react";
 
 const Sidebar = () => {
-  const [showSidebar, setShowSidebar] = useState(true);
+  const [showSidebar, setShowSidebar] = useState(false);
   return (
     <div className="flex flex-row relative border-r-2 border-slate-200 ">
-      <div className="w-[70px] h-[calc(100vh-72px)] bg-slate-100 flex flex-col justify-between">
+      <div className="w-[60px] h-[calc(100vh-72px)] bg-slate-100 flex flex-col justify-between">
         <div className="flex flex-col items-center pt-8 gap-y-6">
           <Image
             src={bell}
@@ -63,7 +63,7 @@ const Sidebar = () => {
         </div>
       </div>
       {showSidebar ? (
-        <div className="relative w-[282px] h-[calc(100vh-72px)] px-4 flex flex-col justify-between">
+        <div className="relative w-[240px] h-[calc(100vh-72px)] px-4 flex flex-col justify-between">
           <div className="pt-8 flex flex-col">
             <div className="font-semibold text-[16px]">Projects</div>
             <div className="flex flex-col gap-y-1 py-2">

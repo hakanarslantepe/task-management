@@ -12,6 +12,7 @@ import dots from "@/assets/dots.png";
 import TaskDetail from "./TaskDetail";
 import { Task } from "@/types";
 import { SetStateAction } from "react";
+import Link from "next/link";
 
 interface Props {
   task: Task;
@@ -28,7 +29,7 @@ const TaskModal = ({ closeModal, task, setIsModalOpen }: Props) => {
 
   return (
     <>
-      <div className="h-16 border-b-2 border-slate-300 flex justify-between flex-row items-center px-6">
+      <div className="h-16 border-b-2 border-slate-300 flex justify-between flex-row items-center px-8">
         <div className="flex flex-row gap-x-4 justify-center items-center">
           <div className="h-5 w-5">
             <Image src={chevronup} alt="" />
@@ -37,16 +38,25 @@ const TaskModal = ({ closeModal, task, setIsModalOpen }: Props) => {
             <Image src={chevrondown} alt="" width={20} height={20} />
           </div>
           <div className="h-5 w-5">
-            <Image src={home} alt="" width={20} height={20} />
+            <Image
+              onClick={closeModal}
+              src={home}
+              alt=""
+              width={20}
+              height={20}
+            />
           </div>
 
           <div className="flex flex-row gap-x-4 justify-center items-center">
             <span className="text-xl text-slate-500">{">"}</span>
-            <div className="text-slate-500 text-sm font-medium">Projects</div>
+            <p
+              onClick={closeModal}
+              className="text-slate-500 text-sm font-medium"
+            >
+              Projects
+            </p>
             <span className="text-xl text-slate-500">{">"}</span>
-            <div className="text-[#145389] text-sm font-bold">
-              Proje Name 1
-            </div>
+            <p className="text-[#145389] text-sm font-bold">Proje Name 1</p>
           </div>
         </div>
         <div className="flex flex-row">
