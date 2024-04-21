@@ -1,7 +1,7 @@
 "use client";
 
 import Plus from "@/icons/Plus";
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { Column, Id, Task } from "../types";
 import Board from "./Board";
 import {
@@ -102,7 +102,7 @@ const defaultTasks: Task[] = [
   },
 ];
 
-function Boards() {
+const Boards = () => {
   const [columns, setColumns] = useState<Column[]>(defaultCols);
   const columnsId = useMemo(() => columns.map((col) => col.id), [columns]);
 
@@ -345,7 +345,7 @@ function Boards() {
       });
     }
   }
-}
+};
 
 function generateId() {
   return Math.floor(Math.random() * 10001);
