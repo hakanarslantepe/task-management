@@ -8,8 +8,7 @@ You can view the live demo of the project [here](https://task-management-weld-se
 To run the project on your local machine, follow these steps:
 
 1-Clone the repository:
-git clone https://github.com/user/task-management.git
-
+git clone https://github.com/hakanarslantepe/task-management
 2-Navigate to the project directory:
 cd task-management
 
